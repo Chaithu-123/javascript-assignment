@@ -139,3 +139,22 @@ header {
         font-size: 1.2rem;
     }
 }
+
+#title_cont {
+    background-color: lightskyblue;
+}
+
+#body_cont {
+    background-color: lightgray;
+    height: 8rem;
+}
+
+#card_cont {
+    width: 14%;
+    border-color: black;
+    border-width: 0.15rem;
+}
+
+#container {
+    display: flex;
+}

@@ -1,6 +1,10 @@
 import '../scss/styles.scss';
 import '../node_modules/bootstrap/scss/bootstrap.scss';
-import '../js/search'
+// import '../node_modules/popper.js/dist/popper.js';
+// import '../node_modules/bootstrap/dist/js/bootstrap';
+import '../js/search';
+import '../js/modal';
+
 (function($) {
     "use strict";
 
@@ -13,6 +17,7 @@ import '../js/search'
     let maxPopularTiles = 9;
     let pMovieCardClasses = ["tile1", "tile2", "tile3", "tile4", "tile5", "tile6", "tile7", "tile8", "tile9"];
     let pMovieclassIndex = 0;
+    let currentmovie = null;
 
     let demoData = {
         "images": {
@@ -88,6 +93,7 @@ import '../js/search'
         $('#whole_content').hide();
         $('#' + containerid).show();
         $('#' + containerid).html(``);
+        currentmovie = data;
         let htmlElements = $(`<div class="custom_bg">
             <div class="single_column">
     
@@ -128,23 +134,22 @@ import '../js/search'
     
     
                                 <li>
-                                    hello </li>
+                                
+                        <button type="button" id="actionsave" class="btn btn-primary">Add To Action</button>
+                                    </li>
     
     
                                 <li>
-                                    hi
+                                   Votes
                                 </li>
     
     
                                 <li >
-                                    hello
+                                  Rate Movie
                                 </li>
     
     
-                                <li>
-                                    hi
-                                </li>
-    
+                                
     
     
     
@@ -205,6 +210,108 @@ import '../js/search'
             </div>
         </div>`);
         htmlElements.appendTo($('#' + containerid));
+        $("#actionsave").click(onEditMovieCollection);
+        // $("#actionsave").click(function() {
+        //     let currentCol = {
+        //         "Name": "Animation",
+        //         "Desc": "Animation Movies",
+        //         "Movies": "[]",
+        //         "id": 1
+        //     }
+
+        //     let movieData = JSON.parse(currentCol.Movies);
+        //     movieData.push(currentmovie);
+        //     let mdata = JSON.stringify(movieData);
+
+        //     $.ajax({
+        //         url: "http://localhost:3000/MovieData/" + currentCol.id,
+        //         method: "PUT",
+        //         data: {
+        //             "Name": currentCol.Name,
+        //             "Desc": currentCol.Desc,
+        //             "Movies": mdata,
+        //         },
+        //         success: function(result) {
+        //             alert("submitted");
+        //         }
+        //     });
+
+        //     $.getJSON("http://localhost:3000/MovieData/",
+        //         function(data, status) {
+        //             console.log(data);
+        //         });
+        //     // $.put("http://localhost:3000/MovieData/" + currentCol.id, {
+        //     //         "Name": currentCol.Name,
+        //     //         "Desc": currentCol.Desc,
+        //     //         "Movies": mdata,
+        //     //     },
+        //     //     function(data, status) {
+        //     //         alert("Data: " + data + "\nStatus: " + status);
+        //     //     });
+
+        // });
+    }
+
+    let onEditMovieCollection = (e) => {
+        $(".form-row #lbl_mName").text(currentmovie.title);
+        $.getJSON("http://localhost:3000/MovieData/",
+            function(data, status) {
+                let collectionDataList = data;
+                let modalColComboBox = $(".form-row #selcolletion");
+                modalColComboBox.html('');
+                for (let i of collectionDataList) {
+                    modalColComboBox.append(`<option id="copt` + i.id + `">
+                                       ` + i.Name + `
+                                   </option>`);
+                }
+
+                $("#addMovieToCollectionModal").modal('show');
+                $("#btn-addmovie").click(function(e) {
+                    let form = $('#addmovieform')[0];
+                    let selectedOptionId = $('.form-row #selcolletion option:selected')[0].id;
+                    if (form.checkValidity() === false) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                    addMovieToCollection(selectedOptionId.substr(4), currentmovie, collectionDataList);
+                });
+            });
+
+
+    }
+    let addMovieToCollection = (cId, mdata, colDataList) => {
+        let cindex = colDataList.findIndex(x => x.id == cId);
+        let movieData, existMovieIndex;
+        if (cindex != -1) {
+            if (!(colDataList[cindex].Movies == "")) {
+                movieData = JSON.parse(colDataList[cindex].Movies);
+                existMovieIndex = movieData.findIndex(x => x.id == mdata.id);
+                if (existMovieIndex == -1) {
+                    movieData.push(mdata);
+
+                }
+            } else {
+                movieData = [];
+                movieData.push(mdata);
+            }
+            let movieStrData = JSON.stringify(movieData);
+
+
+            $.ajax({
+                url: "http://localhost:3000/MovieData/" + colDataList[cindex].id,
+                method: "PUT",
+                data: {
+                    "Name": colDataList[cindex].Name,
+                    "Desc": colDataList[cindex].Desc,
+                    "Movies": movieStrData,
+                },
+                success: function(result) {
+                    alert("Movie successfully added");
+                }
+            });
+
+        }
     }
 
 
@@ -254,6 +361,7 @@ import '../js/search'
         }
     }
 
+    // action
 
 
 
