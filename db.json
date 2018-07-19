@@ -3,7 +3,7 @@
     {
       "Name": "Animation",
       "Desc": "Animation Movies",
-      "Movies": "[]",
+      "Movies": "[{\"adult\":false,\"backdrop_path\":\"/kaIfm5ryEOwYg8mLbq8HkPuM1Fo.jpg\",\"belongs_to_collection\":{\"id\":131296,\"name\":\"Thor Collection\",\"poster_path\":\"/yw7gr7DhHHVTLlO8Se8uH17TDMA.jpg\",\"backdrop_path\":\"/3KL8UNKFWgIKXzLHjwY0uwgjzYl.jpg\"},\"budget\":180000000,\"genres\":[{\"id\":28,\"name\":\"Action\"},{\"id\":12,\"name\":\"Adventure\"},{\"id\":35,\"name\":\"Comedy\"}],\"homepage\":\"https://marvel.com/movies/movie/222/thor_ragnarok\",\"id\":284053,\"imdb_id\":\"tt3501632\",\"original_language\":\"en\",\"original_title\":\"Thor: Ragnarok\",\"overview\":\"Thor is on the other side of the universe and finds himself in a race against time to get back to Asgard to stop Ragnarok, the prophecy of destruction to his homeworld and the end of Asgardian civilization, at the hands of an all-powerful new threat, the ruthless Hela.\",\"popularity\":144.24,\"poster_path\":\"/rzRwTcFvttcN1ZpX2xv4j3tSdJu.jpg\",\"production_companies\":[{\"id\":420,\"logo_path\":\"/hUzeosd33nzE5MCNsZxCGEKTXaQ.png\",\"name\":\"Marvel Studios\",\"origin_country\":\"US\"},{\"id\":2,\"logo_path\":\"/4MbjW4f9bu6LvlDmyIvfyuT3boj.png\",\"name\":\"Walt Disney Pictures\",\"origin_country\":\"US\"}],\"production_countries\":[{\"iso_3166_1\":\"US\",\"name\":\"United States of America\"}],\"release_date\":\"2017-10-25\",\"revenue\":853977126,\"runtime\":130,\"spoken_languages\":[{\"iso_639_1\":\"en\",\"name\":\"English\"}],\"status\":\"Released\",\"tagline\":\"No Hammer. No Problem.\",\"title\":\"Thor: Ragnarok\",\"video\":false,\"vote_average\":7.5,\"vote_count\":7326}]",
       "id": 1
     },
     {
@@ -21,7 +21,7 @@
     {
       "Name": "Comedy",
       "Desc": "Comedy Movies",
-      "Movies": "",
+      "Movies": "[]",
       "id": 4
     },
     {

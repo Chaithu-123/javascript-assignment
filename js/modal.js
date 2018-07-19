@@ -68,30 +68,7 @@ let createcollections = (data) => {
     }
 }
 
-// let getcollection = () => {
-//     $.getJSON("http://localhost:3000/MovieData/",
-//         function(data, status) {
-//             console.log(data);
-//             createcollections(data);
-
-//         });
-// }
-// let showcollections = (data) => {
-//     $("#showCol").html('');
-//     for (let i of data) {
-//         $("#showCol").append(`
-//   <div class="card" id="card_cont" >
-//     <header class="container" id="title_cont">
-//       <h2> ` + i.Name + ` </h2>
-//     </header>
-//     <div class="container" id="body_cont">
-//      ` + i.Desc + `
-//     </div>    
-
-//   </div>`);
-
-//     }
-// }
+// Function to Go To Edit Funcionality
 
 let showMovieCollection = (e) => {
     let curElement = e.currentTarget;
@@ -118,18 +95,15 @@ let showMovieCollection = (e) => {
 
             $("#showCol").modal('show');
 
-            // $("#save").click(function(e) {
-            //     let form = $('#showmov')[0];
-            //     let selectedOptionId = $('.modal-header #col_mName option:selected')[0].id;
-            //     if (form.checkValidity() === false) {
-            //         e.preventDefault();
-            //         e.stopPropagation();
-            //     }
-            //     form.classList.add('was-validated');
-            //     addMovieToCollection(selectedOptionId.substr(4), currentmovie, collectionDataList);
-            // });
+
         });
 }
+
+
+
+
+// Deleting Movies In Collection
+
 let deletecollection = (e) => {
     let delElement = e.currentTarget;
     let delId = delElement.id.substr(3);
@@ -151,13 +125,4 @@ let deletecollection = (e) => {
         }
     });
 
-    // $.getJSON("http://localhost:3000/MovieData/",
-    //     function(data, status) {
-    //         let delMov = data.filter(function(i) {
-    //             return i.id == delId
-    //         })[0];
-
-    //         $("#del").splice;
-
-    //     });
 }

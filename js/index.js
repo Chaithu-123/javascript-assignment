@@ -1,7 +1,5 @@
 import '../scss/styles.scss';
 import '../node_modules/bootstrap/scss/bootstrap.scss';
-// import '../node_modules/popper.js/dist/popper.js';
-// import '../node_modules/bootstrap/dist/js/bootstrap';
 import '../js/search';
 import '../js/modal';
 
@@ -14,8 +12,8 @@ import '../js/modal';
     let configData = null;
     let baseImgURL = null;
     let searchtext = "";
-    let maxPopularTiles = 9;
-    let pMovieCardClasses = ["tile1", "tile2", "tile3", "tile4", "tile5", "tile6", "tile7", "tile8", "tile9"];
+    let maxPopularTiles = 12;
+    let pMovieCardClasses = ["tile1", "tile2", "tile3", "tile4", "tile5", "tile6", "tile7", "tile8", "tile9", "tile10", "tile11", "tile12"];
     let pMovieclassIndex = 0;
     let currentmovie = null;
 
@@ -73,9 +71,9 @@ import '../js/modal';
     }
 
     let init = () => {
-        getConfig();
-    }
-
+            getConfig();
+        }
+        // Opening Movie Details
     let onPopularMovieClick = (evt) => {
         let currentEle = evt.currentTarget;
         let apiurl = baseURL + 'movie/' + currentEle.id.substr(5) + '?api_key=' + APIKEY;
@@ -90,11 +88,11 @@ import '../js/modal';
 
 
     let appendMovieInfo = (data, containerid) => {
-        $('#whole_content').hide();
-        $('#' + containerid).show();
-        $('#' + containerid).html(``);
-        currentmovie = data;
-        let htmlElements = $(`<div class="custom_bg">
+            $('#whole_content').hide();
+            $('#' + containerid).show();
+            $('#' + containerid).html(``);
+            currentmovie = data;
+            let htmlElements = $(`<div class="custom_bg">
             <div class="single_column">
     
     
@@ -211,48 +209,50 @@ import '../js/modal';
     
             </div>
         </div>`);
-        htmlElements.appendTo($('#' + containerid));
-        $("#actionsave").click(onEditMovieCollection);
-        // $("#actionsave").click(function() {
-        //     let currentCol = {
-        //         "Name": "Animation",
-        //         "Desc": "Animation Movies",
-        //         "Movies": "[]",
-        //         "id": 1
-        //     }
+            htmlElements.appendTo($('#' + containerid));
 
-        //     let movieData = JSON.parse(currentCol.Movies);
-        //     movieData.push(currentmovie);
-        //     let mdata = JSON.stringify(movieData);
+            $("#actionsave").click(onEditMovieCollection);
+            // $("#actionsave").click(function() {
+            //     let currentCol = {
+            //         "Name": "Animation",
+            //         "Desc": "Animation Movies",
+            //         "Movies": "[]",
+            //         "id": 1
+            //     }
 
-        //     $.ajax({
-        //         url: "http://localhost:3000/MovieData/" + currentCol.id,
-        //         method: "PUT",
-        //         data: {
-        //             "Name": currentCol.Name,
-        //             "Desc": currentCol.Desc,
-        //             "Movies": mdata,
-        //         },
-        //         success: function(result) {
-        //             alert("submitted");
-        //         }
-        //     });
+            //     let movieData = JSON.parse(currentCol.Movies);
+            //     movieData.push(currentmovie);
+            //     let mdata = JSON.stringify(movieData);
 
-        //     $.getJSON("http://localhost:3000/MovieData/",
-        //         function(data, status) {
-        //             console.log(data);
-        //         });
-        //     // $.put("http://localhost:3000/MovieData/" + currentCol.id, {
-        //     //         "Name": currentCol.Name,
-        //     //         "Desc": currentCol.Desc,
-        //     //         "Movies": mdata,
-        //     //     },
-        //     //     function(data, status) {
-        //     //         alert("Data: " + data + "\nStatus: " + status);
-        //     //     });
+            //     $.ajax({
+            //         url: "http://localhost:3000/MovieData/" + currentCol.id,
+            //         method: "PUT",
+            //         data: {
+            //             "Name": currentCol.Name,
+            //             "Desc": currentCol.Desc,
+            //             "Movies": mdata,
+            //         },
+            //         success: function(result) {
+            //             alert("submitted");
+            //         }
+            //     });
 
-        // });
-    }
+            //     $.getJSON("http://localhost:3000/MovieData/",
+            //         function(data, status) {
+            //             console.log(data);
+            //         });
+            //     // $.put("http://localhost:3000/MovieData/" + currentCol.id, {
+            //     //         "Name": currentCol.Name,
+            //     //         "Desc": currentCol.Desc,
+            //     //         "Movies": mdata,
+            //     //     },
+            //     //     function(data, status) {
+            //     //         alert("Data: " + data + "\nStatus: " + status);
+            //     //     });
+
+            // });
+        }
+        // Functionality For Edit Movie Button
 
     let onEditMovieCollection = (e) => {
         $(".form-row #lbl_mName").text(currentmovie.title);
@@ -282,6 +282,9 @@ import '../js/modal';
 
 
     }
+
+    // Adding Movie To User Collection
+
     let addMovieToCollection = (cId, mdata, colDataList) => {
         let cindex = colDataList.findIndex(x => x.id == cId);
         let movieData, existMovieIndex;
@@ -322,7 +325,7 @@ import '../js/modal';
 
 
 
-
+    // Generating The Popular Movie List On Home Page
 
     let generatePopularList = (datalist, mediaType) => {
         if (mediaType.toLowerCase() == 'tv') {
@@ -362,16 +365,6 @@ import '../js/modal';
             htmlcontent.appendTo(appendContainer);
         }
     }
-
-    // action
-
-
-
-
-    // $('#whole_content').click(function() {
-    //     $('div').html('');
-    //     $('div').html('');
-    // });
 
 
 })(jQuery);
