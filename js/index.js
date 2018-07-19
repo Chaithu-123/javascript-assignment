@@ -135,10 +135,12 @@ import '../js/modal';
     
                                 <li>
                                 
-                        <button type="button" id="actionsave" class="btn btn-primary">Add To Action</button>
+                        <button type="button" id="actionsave" class="btn btn-primary">Add To Collection</button>
                                     </li>
     
     
+
+                                    
                                 <li>
                                    Votes
                                 </li>
